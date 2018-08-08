@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img class="imagen" src="./assets/logo.png">
+    <Intro msg="Bienvenido"/>
+    <Elegir msg="Elige una de las dos opciones del producto que desea subir a nuestra plataforma"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Intro from './components/Intro.vue'
+import Elegir from "./components/Elegir.vue"
+// import Casco01 from "./components/Casco01.vue"
+// import Casco02 from "./components/Casco02.vue"
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Intro,
+    Elegir
   }
 }
 </script>
@@ -23,6 +28,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+@media (max-width: 800px) {
+  .imagen {
+    max-width: 250px;
+  }
 }
 </style>
