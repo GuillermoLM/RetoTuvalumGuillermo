@@ -288,12 +288,18 @@
                     <div class="column">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-start">
-                                <input type="file" ref="fileInput">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-start">
-                                <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenCasco">Aceptar</button>
+                                <div v-if="!image">
+                                    <input type="file" @change="onFileChange">
+                                </div>
+                                <div v-else>
+                                    <img :src="image" />
+                                    <button class="buttonDeleteImageCasco" @click="removeImage">Eliminar foto</button>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-start">
+                                            <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenCasco">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -359,6 +365,8 @@
             <p>Su correo electrónico es: {{correoCascoIn}}@{{correoCascoType}}.{{correoCascoDot}}
                 <br>
             </p>
+            <p>La imagen que ha introducido es: <br></p>
+            <img :src="image" />
             <h5>Gracias por su atención</h5>
             <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaCasco}%0D%0APrecio:%20${dineroCasco}.00€%0D%0ACorreoElectrónico:%20${correoCascoIn}@${correoCascoType}.${correoCascoDot}`"
                 target="_top">Enviar Correo</a>
@@ -379,12 +387,12 @@
         data: () => ({
             dineroBici: "",
             correoBiciIn: "",
-            correoBiciType:"",
-            correoBiciDot:"",
+            correoBiciType: "",
+            correoBiciDot: "",
             dineroCasco: "",
             correoCascoIn: "",
-            correoCascoType:"",
-            correoCascoDot:"",
+            correoCascoType: "",
+            correoCascoDot: "",
             estadoBici: "",
             marcaBici: "",
             marcaCasco: "",
@@ -420,9 +428,31 @@
             noMerida: false,
             noTrek: false,
             noOrbea: false,
+
+            image: "",
         }),
 
         methods: {
+            onFileChange(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                var image = new Image();
+                var reader = new FileReader();
+                var vm = this;
+
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImage: function (e) {
+                this.image = '';
+            },
+
             // BICILETA //
             btnBici: function () {
                 this.seenB1 = true;
@@ -732,11 +762,15 @@
         max-width: 400px;
     }
 
-    .correoTextBici, .correoTextCasco, .correoTextBici2, .correoTextCasco2{
+    .correoTextBici,
+    .correoTextCasco,
+    .correoTextBici2,
+    .correoTextCasco2 {
         max-width: 210px;
     }
 
-    .correoTextBici3,.correoTextCasco3 {
+    .correoTextBici3,
+    .correoTextCasco3 {
         max-width: 100px;
     }
 
@@ -766,5 +800,9 @@
 
     .inputNo {
         margin-top: 10px;
+    }
+
+    .buttonDeleteImageCasco{
+        margin-left: 20px;
     }
 </style>
