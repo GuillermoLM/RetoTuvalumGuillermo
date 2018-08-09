@@ -175,12 +175,22 @@
                     <div class="column">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-start">
-                                <input type="file" id="files" ref="files" multiple v-on:change="handleFileUploads()" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-start">
-                                <button class="btn btn-secondary btnAcpB01" v-on:click="btnAceptarImagenesBici">Aceptar</button>
+                                <div v-if="!imageBici">
+                                    <input type="file" @change="onFileChangeBici">
+                                </div>
+                                <div v-else>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img :src="imageBici" />
+                                            <button class="buttonDeleteImage" @click="removeImageBici">Eliminar foto</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-center">
+                                            <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenesBici">Aceptar</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -252,8 +262,12 @@
             <p>Su correo electrónico es: {{correoBiciIn}}@{{correoBiciType}}.{{correoBiciDot}}
                 <br>
             </p>
+            <p>La imagen que ha introducido es:
+                <br>
+            </p>
+            <img :src="imageBici" />
             <h5>Gracias por su atención</h5>
-            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaBici}%0D%0AModelo:%20${modeloGiant} ${modeloCanyon} ${modeloMerida} ${modeloTrek} ${modeloOrbea} ${noGiantModel} ${noCanyonModel} ${noMeridaModel} ${noTrekModel} ${noOrbeaModel}%0D%0AEstado%20bicicleta:%20${estadoBici}%0D%0APrecio:%20${dineroBici}.00€%0D%0ACorreoElectrónico:%20${correoBiciIn}@${correoBiciType}.${correoBiciDot}`"
+            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaBici}%0D%0AModelo:%20${modeloGiant} ${modeloCanyon} ${modeloMerida} ${modeloTrek} ${modeloOrbea} ${noGiantModel} ${noCanyonModel} ${noMeridaModel} ${noTrekModel} ${noOrbeaModel}%0D%0AEstado%20bicicleta:%20${estadoBici}%0D%0APrecio:%20${dineroBici}.00€%0D%0ACorreoElectrónico:%20${correoBiciIn}@${correoBiciType}.${correoBiciDot}%0D%0AImagen:%20`"
                 target="_top">Enviar Correo</a>
             <button type="button" class="btnCascoVolverBEmail btn btn-info btn-lg" v-on:click="btnCascoVolverC5">Volver</button>
         </div>
@@ -293,7 +307,7 @@
                                 </div>
                                 <div v-else>
                                     <img :src="image" />
-                                    <button class="buttonDeleteImageCasco" @click="removeImage">Eliminar foto</button>
+                                    <button class="buttonDeleteImage" @click="removeImage">Eliminar foto</button>
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-start">
                                             <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenCasco">Aceptar</button>
@@ -365,10 +379,12 @@
             <p>Su correo electrónico es: {{correoCascoIn}}@{{correoCascoType}}.{{correoCascoDot}}
                 <br>
             </p>
-            <p>La imagen que ha introducido es: <br></p>
+            <p>La imagen que ha introducido es:
+                <br>
+            </p>
             <img :src="image" />
             <h5>Gracias por su atención</h5>
-            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaCasco}%0D%0APrecio:%20${dineroCasco}.00€%0D%0ACorreoElectrónico:%20${correoCascoIn}@${correoCascoType}.${correoCascoDot}`"
+            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaCasco}%0D%0APrecio:%20${dineroCasco}.00€%0D%0ACorreoElectrónico:%20${correoCascoIn}@${correoCascoType}.${correoCascoDot}%0D%0AImagen:%20`"
                 target="_top">Enviar Correo</a>
             <button type="button" class="btnCascoVolverCEmail btn btn-info btn-lg" v-on:click="btnCascoVolverC4">Volver</button>
         </div>
@@ -430,6 +446,7 @@
             noOrbea: false,
 
             image: "",
+            imageBici: "",
         }),
 
         methods: {
@@ -442,15 +459,33 @@
             createImage(file) {
                 var image = new Image();
                 var reader = new FileReader();
-                var vm = this;
 
                 reader.onload = (e) => {
-                    vm.image = e.target.result;
+                    this.image = e.target.result;
                 };
                 reader.readAsDataURL(file);
             },
             removeImage: function (e) {
                 this.image = '';
+            },
+
+            onFileChangeBici(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImageBici(files[0]);
+            },
+            createImageBici(file) {
+                var imageBici = new Image();
+                var reader = new FileReader();
+
+                reader.onload = (e) => {
+                    this.imageBici = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImageBici: function (e) {
+                this.imageBici = '';
             },
 
             // BICILETA //
@@ -802,7 +837,14 @@
         margin-top: 10px;
     }
 
-    .buttonDeleteImageCasco{
+    .buttonDeleteImage {
         margin-left: 20px;
+    }
+
+    img {
+        width: 40%;
+        margin: auto;
+        display: block;
+        margin-bottom: 10px;
     }
 </style>
