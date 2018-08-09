@@ -142,7 +142,7 @@
             <h4>Por favor, debe de indicarnos el estado de su bicicleta</h4>
             <div class="row">
                 <div class="col-4 d-flex justify-content-center">
-                    <button type="button" id="btnVolverC01" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB2">Volver</button>
+                    <button type="button" id="btnVolverB01" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB2">Volver</button>
                 </div>
                 <div class="col-4">
                     <div class="dropdown">
@@ -153,10 +153,15 @@
                             <option value="con bastante uso">3: con bastante uso</option>
                             <option value="puede necesitar algún repuesto">4: puede necesitar algún repuesto</option>
                         </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div v-if="estadoBici">
                         <button class="btn btn-secondary btnAcepMarcasCasco" v-on:click="btnEstadoBici">Aceptar</button>
                     </div>
                 </div>
-                <div class="col-4"></div>
             </div>
         </div>
 
@@ -206,12 +211,22 @@
                         </div>
                         <div class="row">
                             <div class="emailB col-12">
-                                <input v-model="correoBiciIn" type="email" class="moneyTextBici form-control" placeholder="Introduce tu email">
+                                <div class="input-group">
+                                    <input v-model="correoBiciIn" type="email" class="correoTextBici form-control" placeholder="Introduce tu email">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="email" v-model="correoBiciType" class="correoTextBici2 form-control" placeholder="gmail / hotmail / outlook">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.</span>
+                                    </div>
+                                    <input v-model="correoBiciDot" type="email" class="correoTextBici3 form-control" placeholder="com / es">
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 d-flex justify-content-start">
-                                <button class="btn btn-secondary btnAcpBME" v-on:click="btnAceptarPrecioBici">Aceptar</button>
+                            <div class="col-12 d-flex justify-content-start" v-if="dineroBici && correoBiciIn && correoBiciType && correoBiciDot">
+                                <button type="submit" class="btn btn-secondary btnAcpBME" v-on:click="btnAceptarPrecioBici">Aceptar</button>
                             </div>
                         </div>
                     </div>
@@ -234,11 +249,12 @@
             <p>El Precio introducido es de: {{dineroBici}}.00 €
                 <br>
             </p>
-            <p>Su correo electrónico es: {{correoBiciIn}}
+            <p>Su correo electrónico es: {{correoBiciIn}}@{{correoBiciType}}.{{correoBiciDot}}
                 <br>
             </p>
             <h5>Gracias por su atención</h5>
-            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaBici}%0D%0AModelo:%20${modeloGiant} ${modeloCanyon} ${modeloMerida} ${modeloTrek} ${modeloOrbea} ${noGiantModel} ${noCanyonModel} ${noMeridaModel} ${noTrekModel} ${noOrbeaModel}%0D%0AEstado%20bicicleta:%20${estadoBici}%0D%0APrecio:%20${dineroBici}.00€%0D%0ACorreoElectrónico:%20${correoBiciIn}`" target="_top">Enviar Correo</a>
+            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaBici}%0D%0AModelo:%20${modeloGiant} ${modeloCanyon} ${modeloMerida} ${modeloTrek} ${modeloOrbea} ${noGiantModel} ${noCanyonModel} ${noMeridaModel} ${noTrekModel} ${noOrbeaModel}%0D%0AEstado%20bicicleta:%20${estadoBici}%0D%0APrecio:%20${dineroBici}.00€%0D%0ACorreoElectrónico:%20${correoBiciIn}@${correoBiciType}.${correoBiciDot}`"
+                target="_top">Enviar Correo</a>
             <button type="button" class="btnCascoVolverBEmail btn btn-info btn-lg" v-on:click="btnCascoVolverC5">Volver</button>
         </div>
 
@@ -255,7 +271,9 @@
                         <option value="Catlike">Catlike</option>
                         <option value="Giro">Giro</option>
                     </select>
-                    <button class="btn btn-secondary btnAcepMarcasCasco" v-on:click="btnAceptarMarcaCasco">Aceptar</button>
+                    <div class="col-12" v-if="marcaCasco">
+                        <button class="btn btn-secondary btnAcepMarcasCasco" v-on:click="btnAceptarMarcaCasco">Aceptar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -306,11 +324,21 @@
                         </div>
                         <div class="row">
                             <div class="emailC col-12">
-                                <input v-model="correoCascoIn" type="email" class="moneyTextCasco form-control" placeholder="Introduce tu email">
+                                <div class="input-group">
+                                    <input v-model="correoCascoIn" type="email" class="correoTextCasco form-control" placeholder="Introduce tu email">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="email" v-model="correoCascoType" class="correoTextCasco2 form-control" placeholder="gmail / hotmail / outlook">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.</span>
+                                    </div>
+                                    <input v-model="correoCascoDot" type="email" class="correoTextCasco3 form-control" placeholder="com / es">
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-1" v-if="dineroCasco && correoCascoIn && correoCascoType && correoCascoDot">
                                 <button class="btn btn-secondary btnAcpCME" v-on:click="btnAceptarPrecioCasco">Aceptar</button>
                             </div>
                         </div>
@@ -328,11 +356,12 @@
             <p>El Precio introducido es de: {{dineroCasco}}.00 €
                 <br>
             </p>
-            <p>Su correo electrónico es: {{correoCascoIn}}
+            <p>Su correo electrónico es: {{correoCascoIn}}@{{correoCascoType}}.{{correoCascoDot}}
                 <br>
             </p>
             <h5>Gracias por su atención</h5>
-            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaCasco}%0D%0APrecio:%20${dineroCasco}.00€%0D%0ACorreoElectrónico:%20${correoCascoIn}`" target="_top">Enviar Correo</a>
+            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaCasco}%0D%0APrecio:%20${dineroCasco}.00€%0D%0ACorreoElectrónico:%20${correoCascoIn}@${correoCascoType}.${correoCascoDot}`"
+                target="_top">Enviar Correo</a>
             <button type="button" class="btnCascoVolverCEmail btn btn-info btn-lg" v-on:click="btnCascoVolverC4">Volver</button>
         </div>
 
@@ -350,19 +379,25 @@
         data: () => ({
             dineroBici: "",
             correoBiciIn: "",
+            correoBiciType:"",
+            correoBiciDot:"",
             dineroCasco: "",
             correoCascoIn: "",
+            correoCascoType:"",
+            correoCascoDot:"",
+            estadoBici: "",
             marcaBici: "",
+            marcaCasco: "",
             modeloGiant: "",
             modeloCanyon: "",
             modeloMerida: "",
             modeloTrek: "",
             modeloOrbea: "",
             noGiantModel: "",
-            noCanyonModel:"",
-            noMeridaModel:"",
-            noTrekModel:"",
-            noOrbeaModel:"",
+            noCanyonModel: "",
+            noMeridaModel: "",
+            noTrekModel: "",
+            noOrbeaModel: "",
 
             seenB1: false,
             seenC1: false,
@@ -641,7 +676,8 @@
     }
 
     .btnAcepMarcasCasco {
-        margin-left: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .btnAcpB04 {
@@ -676,6 +712,10 @@
         margin-top: 10px;
     }
 
+    #btnVolverC01 {
+        max-height: 50px;
+    }
+
     #btnVolverB01 {
         max-height: 50px;
     }
@@ -690,6 +730,14 @@
 
     .moneyTextCasco {
         max-width: 400px;
+    }
+
+    .correoTextBici, .correoTextCasco, .correoTextBici2, .correoTextCasco2{
+        max-width: 210px;
+    }
+
+    .correoTextBici3,.correoTextCasco3 {
+        max-width: 100px;
     }
 
     .emailB {
