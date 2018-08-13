@@ -141,10 +141,10 @@
         <div class="bici02T" v-if="seenB2">
             <h4>Por favor, debe de indicarnos el estado de su bicicleta</h4>
             <div class="row">
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
                     <button type="button" id="btnVolverB01" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB2">Volver</button>
                 </div>
-                <div class="col-2 offset-1 d-flex justify-content-start">
+                <div class="col-12 estadoB d-flex justify-content-center">
                     <div class="dropdown">
                         <select class="custom-select" v-model="estadoBici">
                             <option value="bicicleta nueva">0: bicicleta nueva</option>
@@ -175,7 +175,13 @@
                     <div class="column">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-center">
-                                <div v-if="!imageBici">
+                                <div class="imgBDiv" v-if="!imageBici">
+                                    <input type="file" @change="onFileChangeBici">
+                                </div>
+                                <div class="imgBDiv" v-if="!imageBici">
+                                    <input type="file" @change="onFileChangeBici">
+                                </div>
+                                <div class="imgBDiv" v-if="!imageBici">
                                     <input type="file" @change="onFileChangeBici">
                                 </div>
                                 <div v-else>
@@ -285,14 +291,18 @@
                 <div class="col-4 d-flex justify-content-center">
                     <button type="button" id="btnVolverC01" class="btn btn-info btn-lg" v-on:click="btnCascoVolverC1">Volver</button>
                 </div>
-                <div class="col-8">
-                    <select class="custom-select" v-model="marcaCasco">
-                        <option value="Kask">Kask</option>
-                        <option value="Catlike">Catlike</option>
-                        <option value="Giro">Giro</option>
-                    </select>
-                    <div class="col-12" v-if="marcaCasco">
-                        <button class="btn btn-secondary btnAcepMarcasCasco" v-on:click="btnAceptarMarcaCasco">Aceptar</button>
+                <div class="col-2 offset-1 d-flex justify-content-start">
+                    <div class="row">
+                        <div class="col-12">
+                            <select class="custom-select" v-model="marcaCasco">
+                                <option value="Kask">Kask</option>
+                                <option value="Catlike">Catlike</option>
+                                <option value="Giro">Giro</option>
+                            </select>
+                            <div class="col-12" v-if="marcaCasco">
+                                <button class="btn btn-secondary btnAcepMarcasCasco" v-on:click="btnAceptarMarcaCasco">Aceptar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -782,8 +792,8 @@
     .row {
         margin-left: 0px !important;
         margin-right: 0px !important;
-        margin-top: 3px;
-        margin-bottom: 3px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     h6 {
@@ -914,11 +924,11 @@
     }
 
     img {
-        max-width: 40%;
+        max-width: 80px;
         margin: auto;
         display: block;
         margin-bottom: 10px;
-        max-height: 60%;
+        max-height: 100px;
     }
 
     .imgBRender {
@@ -927,5 +937,13 @@
 
     .custom-select {
         max-width: 350px;
+    }
+
+    .imgBDiv{
+        margin:5px;
+    }
+
+    .estadoB{
+        margin-top: 10px;
     }
 </style>
