@@ -4,7 +4,7 @@
         <div class="intro" v-if="!(seenB1 || seenC1 || seenB2 || seenC2 || seenB3 || seenC3 || seenB4 || seenC4correo || seenB5correo)">
             <h4>{{ msg }}</h4>
             <div class="row d-flex justify-content-center">
-                <div class="col-12">
+                <div class="col-12 ">
                     <div class="buttIni">
                         <div class="row d-flex justify-content-center">
                             <div class="col-6">
@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-12 d-flex justify-content-start">
                                 <h6>Marca: </h6>
-                                <select v-model="marcaBici">
+                                <select class="selectMB custom-select" v-model="marcaBici">
                                     <option>Giant</option>
                                     <option>Canyon</option>
                                     <option>Merida</option>
@@ -43,7 +43,7 @@
                                 <div class="col-12">
                                     <div class="modelGiant" v-if="marcaBici === 'Giant'">
                                         <h6>Modelos de {{marcaBici}}</h6>
-                                        <select v-model="modeloGiant">
+                                        <select class="custom-select" v-model="modeloGiant">
                                             <option>Propel Advanved SL Disc</option>
                                             <option>Propel Advanved Pro Disc</option>
                                             <option>Propel Advanved Disc</option>
@@ -62,7 +62,7 @@
 
                                     <div class="modelCanyon" v-if="marcaBici === 'Canyon'">
                                         <h6>Modelos de {{marcaBici}}</h6>
-                                        <select v-model="modeloCanyon">
+                                        <select class="custom-select" v-model="modeloCanyon">
                                             <option>Strive</option>
                                             <option>Spectral</option>
                                             <option>Aeroad</option>
@@ -80,7 +80,7 @@
 
                                     <div class="modelMerida" v-if="marcaBici === 'Merida'">
                                         <h6>Modelos de {{marcaBici}}</h6>
-                                        <select v-model="modeloMerida">
+                                        <select class="custom-select" v-model="modeloMerida">
                                             <option>Reacto Disck Team E</option>
                                             <option>Reacto Disck Team E-900</option>
                                             <option>One Sixty 900 E</option>
@@ -97,7 +97,7 @@
 
                                     <div class="modelTrek" v-if="marcaBici === 'Trek'">
                                         <h6>Modelos de {{marcaBici}}</h6>
-                                        <select v-model="modeloTrek">
+                                        <select class="custom-select" v-model="modeloTrek">
                                             <option>Top Fuel 9.9 Race</option>
                                             <option>Powerfly 9 FS Plus</option>
                                             <option>Cuadro Session 29</option>
@@ -116,7 +116,7 @@
 
                                     <div class="modelOrbea" v-if="marcaBici === 'Orbea'">
                                         <h6>Modelos de {{marcaBici}}</h6>
-                                        <select v-model="modeloOrbea">
+                                        <select class="custom-select" v-model="modeloOrbea">
                                             <option>Alma H20 29"</option>
                                             <option>Occam AM H50</option>
                                             <option>Loki 27+</option>
@@ -144,9 +144,9 @@
                 <div class="col-4 d-flex justify-content-center">
                     <button type="button" id="btnVolverB01" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB2">Volver</button>
                 </div>
-                <div class="col-4">
+                <div class="col-2 offset-1 d-flex justify-content-start">
                     <div class="dropdown">
-                        <select v-model="estadoBici">
+                        <select class="custom-select" v-model="estadoBici">
                             <option value="bicicleta nueva">0: bicicleta nueva</option>
                             <option value="muy poco uso">1: muy poco uso</option>
                             <option value="usada">2: usada</option>
@@ -168,13 +168,13 @@
         <div class="bici03T" v-if="seenB3">
             <h4>Introduzca hasta un máximo de 3 imágenes de la bicileta</h4>
             <div class="row">
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
                     <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB3">Volver</button>
                 </div>
-                <div class="col-8">
+                <div class="col-12">
                     <div class="column">
                         <div class="row">
-                            <div class="col-12 d-flex justify-content-start">
+                            <div class="col-12 d-flex justify-content-center">
                                 <div v-if="!imageBici">
                                     <input type="file" @change="onFileChangeBici">
                                 </div>
@@ -201,13 +201,14 @@
         <div class="bici04T" v-if="seenB4">
             <h4>Introduzca el precio con el que desea vender la bicicleta</h4>
             <div class="row">
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
                     <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB4">Volver</button>
                 </div>
-                <div class="col-8">
+
+                <div class="col-12 d-flex justify-content-center">
                     <div class="column">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 d-flex justify-content-center">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">€</span>
@@ -220,7 +221,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="emailB col-12">
+                            <div class="emailB col-12 d-flex justify-content-center">
                                 <div class="input-group">
                                     <input v-model="correoBiciIn" type="email" class="correoTextBici form-control" placeholder="Introduce tu email">
                                     <div class="input-group-prepend">
@@ -235,12 +236,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 d-flex justify-content-start" v-if="dineroBici && correoBiciIn && correoBiciType && correoBiciDot">
+                            <div class="col-12 d-flex justify-content-center" v-if="dineroBici && correoBiciIn && correoBiciType && correoBiciDot">
                                 <button type="submit" class="btn btn-secondary btnAcpBME" v-on:click="btnAceptarPrecioBici">Aceptar</button>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -265,7 +267,11 @@
             <p>La imagen que ha introducido es:
                 <br>
             </p>
-            <img :src="imageBici" />
+            <div class="row">
+                <div class="imgBRender col-12">
+                    <img :src="imageBici" />
+                </div>
+            </div>
             <h5>Gracias por su atención</h5>
             <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaBici}%0D%0AModelo:%20${modeloGiant} ${modeloCanyon} ${modeloMerida} ${modeloTrek} ${modeloOrbea} ${noGiantModel} ${noCanyonModel} ${noMeridaModel} ${noTrekModel} ${noOrbeaModel}%0D%0AEstado%20bicicleta:%20${estadoBici}%0D%0APrecio:%20${dineroBici}.00€%0D%0ACorreoElectrónico:%20${correoBiciIn}@${correoBiciType}.${correoBiciDot}%0D%0AImagen:%20`"
                 target="_top">Enviar Correo</a>
@@ -279,8 +285,8 @@
                 <div class="col-4 d-flex justify-content-center">
                     <button type="button" id="btnVolverC01" class="btn btn-info btn-lg" v-on:click="btnCascoVolverC1">Volver</button>
                 </div>
-                <div class="col-offset-2 col-4">
-                    <select v-model="marcaCasco">
+                <div class="col-8">
+                    <select class="custom-select" v-model="marcaCasco">
                         <option value="Kask">Kask</option>
                         <option value="Catlike">Catlike</option>
                         <option value="Giro">Giro</option>
@@ -295,21 +301,25 @@
         <div class="casco02T" v-if="seenC2">
             <h4>Introduzca una imagen del casco</h4>
             <div class="row">
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
                     <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnCascoVolverC2">Volver</button>
                 </div>
-                <div class="col-8">
+                <div class="col-12">
                     <div class="column">
                         <div class="row">
-                            <div class="col-12 d-flex justify-content-start">
+                            <div class="col-12 d-flex justify-content-center">
                                 <div v-if="!image">
                                     <input type="file" @change="onFileChange">
                                 </div>
                                 <div v-else>
-                                    <img :src="image" />
-                                    <button class="buttonDeleteImage" @click="removeImage">Eliminar foto</button>
                                     <div class="row">
-                                        <div class="col-12 d-flex justify-content-start">
+                                        <div class="col-12">
+                                            <img :src="image" />
+                                            <button class="buttonDeleteImage" @click="removeImage">Eliminar foto</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-center">
                                             <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenCasco">Aceptar</button>
                                         </div>
                                     </div>
@@ -324,10 +334,11 @@
         <div class="casco03T" v-if="seenC3">
             <h4>Introduzca el precio con el que desea vender el casco</h4>
             <div class="row">
-                <div class="col-4 d-flex justify-content-center">
+                <div class="col-12 d-flex justify-content-center">
                     <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnCascoVolverC3">Volver</button>
                 </div>
-                <div class="col-8">
+
+                <div class="col-12 d-flex justify-content-center">
                     <div class="column">
                         <div class="row">
                             <div class="col-12">
@@ -367,6 +378,8 @@
             </div>
         </div>
 
+
+
         <div class="correoCasco" v-if="seenC4correo">
             <h5>Estos son los datos que nos facilita sobre su casco</h5>
             <br>
@@ -382,10 +395,44 @@
             <p>La imagen que ha introducido es:
                 <br>
             </p>
-            <img :src="image" />
+            <div class="row">
+                <div class="imgBRender col-12">
+                    <img :src="image" />
+                </div>
+            </div>
             <h5>Gracias por su atención</h5>
+            <!-- <button type="button" class="btn btn-info btn-lg" v-on:click="sendEmail">Send Email</button> -->
             <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaCasco}%0D%0APrecio:%20${dineroCasco}.00€%0D%0ACorreoElectrónico:%20${correoCascoIn}@${correoCascoType}.${correoCascoDot}%0D%0AImagen:%20`"
                 target="_top">Enviar Correo</a>
+
+            <!-- <form id="contactform" action="//formspree.io/gallo.elcau@gmail.com" method="POST">
+                <h5>Estos son los datos que nos facilita sobre su casco</h5>
+                <br>
+                <p>Su Marca elegida es: {{marcaCasco}}
+                    <br>
+                </p>
+                <p>El Precio introducido es de: {{dineroCasco}}.00 €
+                    <br>
+                </p>
+                <p>Su correo electrónico es: {{correoCascoIn}}@{{correoCascoType}}.{{correoCascoDot}}
+                    <br>
+                </p>
+                <p>La imagen que ha introducido es:
+                    <br>
+                </p>
+                <img :src="image" />
+                <h5>Gracias por su atención</h5>
+                <input type="text" name="name" placeholder="Your name">
+                <input type="email" name="_replyto" placeholder="Your email">
+                <textarea name="message" placeholder="Your message"></textarea>
+                <select name="option">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <input name="image" type="file" @change="onFileChange">
+                <input type="submit" value="Send Email">
+            </form> -->
             <button type="button" class="btnCascoVolverCEmail btn btn-info btn-lg" v-on:click="btnCascoVolverC4">Volver</button>
         </div>
 
@@ -447,9 +494,31 @@
 
             image: "",
             imageBici: "",
+            dataURL: "",
         }),
 
         methods: {
+
+            sendEmail: function () {
+                var email = require("emailjs");
+                var server = email.server.connect({
+                    user: "username",
+                    password: "bender69",
+                    host: "email-smtp.us-east-1.amazonaws.com",
+                    ssl: true
+                });
+
+                // send the message and get a callback with an error or details of the message that was sent
+                server.send({
+                    text: "i hope this works",
+                    from: "you <gallo.elcau@gmail.com>",
+                    to: "someone <gallo.elcau@gmail.com>",
+                    subject: "testing emailjs"
+                }, function (err, message) {
+                    console.log(err || message);
+                });
+            },
+
             onFileChange(e) {
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
@@ -487,6 +556,7 @@
             removeImageBici: function (e) {
                 this.imageBici = '';
             },
+
 
             // BICILETA //
             btnBici: function () {
@@ -712,6 +782,8 @@
     .row {
         margin-left: 0px !important;
         margin-right: 0px !important;
+        margin-top: 3px;
+        margin-bottom: 3px;
     }
 
     h6 {
@@ -842,9 +914,18 @@
     }
 
     img {
-        width: 40%;
+        max-width: 40%;
         margin: auto;
         display: block;
         margin-bottom: 10px;
+        max-height: 60%;
+    }
+
+    .imgBRender {
+        max-height: 100px;
+    }
+
+    .custom-select {
+        max-width: 350px;
     }
 </style>
