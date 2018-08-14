@@ -1,6 +1,6 @@
 <template>
     <div class="elegir">
-
+        
         <div class="intro" v-if="!(seenB1 || seenC1 || seenB2 || seenC2 || seenB3 || seenC3 || seenB4 || seenC4correo || seenB5correo)">
             <h4>{{ msg }}</h4>
             <div class="row d-flex justify-content-center">
@@ -159,7 +159,7 @@
             <div class="row">
                 <div class="col-12">
                     <div v-if="estadoBici">
-                        <button class="btn btn-secondary btnAcepMarcasCasco" v-on:click="btnEstadoBici">Aceptar</button>
+                        <button class="btn btn-secondary btnAcepMarcas" v-on:click="btnEstadoBici">Aceptar</button>
                     </div>
                 </div>
             </div>
@@ -178,21 +178,28 @@
                                 <div class="imgBDiv" v-if="!imageBici">
                                     <input type="file" @change="onFileChangeBici">
                                 </div>
-                                <div class="imgBDiv" v-if="!imageBici">
-                                    <input type="file" @change="onFileChangeBici">
+                                <div class="imgBDiv" v-if="!imageBici2">
+                                    <input type="file" @change="onFileChangeBici2">
                                 </div>
-                                <div class="imgBDiv" v-if="!imageBici">
-                                    <input type="file" @change="onFileChangeBici">
-                                </div>
-                                <div v-else>
+                                <div v-if="imageBici">
                                     <div class="row">
                                         <div class="col-12">
                                             <img :src="imageBici" />
                                             <button class="buttonDeleteImage" @click="removeImageBici">Eliminar foto</button>
                                         </div>
                                     </div>
+                                </div>
+                                <div v-if="imageBici2">
                                     <div class="row">
-                                        <div class="col-12 d-flex justify-content-center">
+                                        <div class="col-12">
+                                            <img :src="imageBici2" />
+                                            <button class="buttonDeleteImage" @click="removeImageBici2">Eliminar foto</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-center" v-if="imageBici || imageBici2 || imageBici3">
                                             <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenesBici">Aceptar</button>
                                         </div>
                                     </div>
@@ -285,28 +292,8 @@
         </div>
 
         <!-- Casco -->
-        <div class="casco01T" v-if="seenC1">
-            <h4>Escoge una marca del casco</h4>
-            <div class="row">
-                <div class="col-4 d-flex justify-content-center">
-                    <button type="button" id="btnVolverC01" class="btn btn-info btn-lg" v-on:click="btnCascoVolverC1">Volver</button>
-                </div>
-                <div class="col-2 offset-1 d-flex justify-content-start">
-                    <div class="row">
-                        <div class="col-12">
-                            <select class="custom-select" v-model="marcaCasco">
-                                <option value="Kask">Kask</option>
-                                <option value="Catlike">Catlike</option>
-                                <option value="Giro">Giro</option>
-                            </select>
-                            <div class="col-12" v-if="marcaCasco">
-                                <button class="btn btn-secondary btnAcepMarcasCasco" v-on:click="btnAceptarMarcaCasco">Aceptar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <casco1 :aceptar="btnAceptarMarcaCasco" :volver="btnCascoVolverC1" v-if="seenC1"/>
+        <casco2 />
 
         <div class="casco02T" v-if="seenC2">
             <h4>Introduzca una imagen del casco</h4>
@@ -567,6 +554,25 @@
                 this.imageBici = '';
             },
 
+            onFileChangeBici2(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImageBici2(files[0]);
+            },
+            createImageBici2(file) {
+                var imageBici2 = new Image();
+                var reader = new FileReader();
+
+                reader.onload = (e) => {
+                    this.imageBici2 = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImageBici2: function (e) {
+                this.imageBici2 = '';
+            },
+
 
             // BICILETA //
             btnBici: function () {
@@ -691,7 +697,8 @@
                 this.seenC1 = false;
             },
             //Boton Marcas Cascos
-            btnAceptarMarcaCasco: function () {
+            btnAceptarMarcaCasco: function (data) {
+                this.marcaCasco = data;
                 this.seenC2 = true;
                 this.seenC1 = false;
             },
@@ -822,7 +829,7 @@
         margin-bottom: 10px;
     }
 
-    .btnAcepMarcasCasco {
+    .btnAcepMarcas {
         margin-top: 10px;
         margin-bottom: 10px;
     }
