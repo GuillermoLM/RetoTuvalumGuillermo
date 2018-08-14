@@ -22,54 +22,7 @@
         <bici1 :aceptar="btnModeloElegido" :volver="btnBiciVolverB1" v-if="seenB1"/>
         <bici2 :aceptar="btnEstadoBici" :volver="btnBiciVolverB2" v-if="seenB2"/>
         <bici3 :aceptar="btnAceptarImagenesBici" :volver="btnBiciVolverB3" v-if="seenB3"/>
-
-        <div class="bici04T" v-if="seenB4">
-            <h4>Introduzca el precio con el que desea vender la bicicleta</h4>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB4">Volver</button>
-                </div>
-
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="column">
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">€</span>
-                                    </div>
-                                    <input v-model="dineroBici" type="number" class="moneyTextBici form-control">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="emailB col-12 d-flex justify-content-center">
-                                <div class="input-group">
-                                    <input v-model="correoBiciIn" type="email" class="correoTextBici form-control" placeholder="Introduce tu email">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">@</span>
-                                    </div>
-                                    <input type="email" v-model="correoBiciType" class="correoTextBici2 form-control" placeholder="gmail / hotmail / outlook">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.</span>
-                                    </div>
-                                    <input v-model="correoBiciDot" type="email" class="correoTextBici3 form-control" placeholder="com / es">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center" v-if="dineroBici && correoBiciIn && correoBiciType && correoBiciDot">
-                                <button type="submit" class="btn btn-secondary btnAcpBME" v-on:click="btnAceptarPrecioBici">Aceptar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        <bici4 :aceptar="btnAceptarPrecioBici" :volver="btnBiciVolverB4" v-if="seenB4"/>
 
         <div class="correoBici" v-if="seenB5correo">
             <h5>Estos son los datos que nos facilita sobre su bicicleta</h5>
@@ -235,10 +188,15 @@
                 this.seenB3 = true;
             },
             //Aceptar precio Bici
-            btnAceptarPrecioBici: function () {
+            btnAceptarPrecioBici: function (dB, cB1, cB2, cB3) {
                 if (this.dineroBici > 1500) {
                     alert("Productos similares al tuyo han sido vendidos con un precio medio de 1.350 euros");
                 }
+                this.dineroBici = dB;
+                this.correoBiciIn = cB1;
+                this.correoBiciType = cB2;
+                this.correoBiciDot = cB3;
+
                 this.seenB5correo = true;
                 this.seenB4 = false;
             },
