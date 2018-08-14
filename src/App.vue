@@ -9,8 +9,6 @@
 <script>
 import Intro from './components/Intro.vue'
 import Elegir from "./components/Elegir.vue"
-// import Casco01 from "./components/Casco01.vue"
-// import Casco02 from "./components/Casco02.vue"
 
 export default {
   name: 'app',

@@ -23,9 +23,9 @@
     </div>
 </template>
 
-<script>
+<script scoped>
     export default {
-        name: 'c1',
+        name: 'casco1',
 
         props: ['aceptar', 'volver'],
         data: () => ({
@@ -44,6 +44,10 @@
 
     h4 {
         font-size: 22px;
+    }
+
+    .casco01T{
+        margin: 15px;
     }
 
     .btnAcepMarcas {

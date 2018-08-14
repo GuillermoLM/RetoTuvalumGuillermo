@@ -1,6 +1,5 @@
 <template>
     <div class="elegir">
-        
         <div class="intro" v-if="!(seenB1 || seenC1 || seenB2 || seenC2 || seenB3 || seenC3 || seenB4 || seenC4correo || seenB5correo)">
             <h4>{{ msg }}</h4>
             <div class="row d-flex justify-content-center">
@@ -293,40 +292,7 @@
 
         <!-- Casco -->
         <casco1 :aceptar="btnAceptarMarcaCasco" :volver="btnCascoVolverC1" v-if="seenC1"/>
-        <casco2 />
-
-        <div class="casco02T" v-if="seenC2">
-            <h4>Introduzca una imagen del casco</h4>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnCascoVolverC2">Volver</button>
-                </div>
-                <div class="col-12">
-                    <div class="column">
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                <div v-if="!image">
-                                    <input type="file" @change="onFileChange">
-                                </div>
-                                <div v-else>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <img :src="image" />
-                                            <button class="buttonDeleteImage" @click="removeImage">Eliminar foto</button>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-center">
-                                            <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenCasco">Aceptar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <casco2 :aceptar="btnAceptarImagenCasco" :volver="btnCascoVolverC2" v-if="seenC2"/>
 
         <div class="casco03T" v-if="seenC3">
             <h4>Introduzca el precio con el que desea vender el casco</h4>
@@ -708,7 +674,8 @@
                 this.seenC1 = true;
             },
             //Aceptar Imagen Casco
-            btnAceptarImagenCasco: function () {
+            btnAceptarImagenCasco: function (data) {
+                this.image = data;
                 this.seenC3 = true;
                 this.seenC2 = false;
             },
