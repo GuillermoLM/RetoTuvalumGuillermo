@@ -23,44 +23,7 @@
         <bici2 :aceptar="btnEstadoBici" :volver="btnBiciVolverB2" v-if="seenB2"/>
         <bici3 :aceptar="btnAceptarImagenesBici" :volver="btnBiciVolverB3" v-if="seenB3"/>
         <bici4 :aceptar="btnAceptarPrecioBici" :volver="btnBiciVolverB4" v-if="seenB4"/>
-
-        <div class="correoBici" v-if="seenB5correo">
-            <h5>Estos son los datos que nos facilita sobre su bicicleta</h5>
-            <br>
-            <p>Su Marca elegida es: {{marcaBici}}
-                <br>
-            </p>
-            <p>Su Modelo elegido es: {{modeloGiant}}{{modeloCanyon}}{{modeloMerida}}{{modeloTrek}}{{modeloOrbea}}{{noGiantModel}}{{noCanyonModel}}{{noMeridaModel}}{{noTrekModel}}{{noOrbeaModel}}
-                <br>
-            </p>
-            <p>El Estado de su bicicleta es de: {{estadoBici}}
-                <br>
-            </p>
-            <p>El Precio introducido es de: {{dineroBici}}.00 €
-                <br>
-            </p>
-            <p>Su correo electrónico es: {{correoBiciIn}}@{{correoBiciType}}.{{correoBiciDot}}
-                <br>
-            </p>
-            <p>La imagen/imágenes que ha introducido es:
-                <br>
-            </p>
-            <div class="row">
-                <div class="imgBRender col-12">
-                    <img :src="imageBici" />
-                </div>
-                <div class="imgBRender col-12">
-                    <img :src="imageBici2" />
-                </div>
-                <div class="imgBRender col-12">
-                    <img :src="imageBici3" />
-                </div>
-            </div>
-            <h5>Gracias por su atención</h5>
-            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaBici}%0D%0AModelo:%20${modeloGiant} ${modeloCanyon} ${modeloMerida} ${modeloTrek} ${modeloOrbea} ${noGiantModel} ${noCanyonModel} ${noMeridaModel} ${noTrekModel} ${noOrbeaModel}%0D%0AEstado%20bicicleta:%20${estadoBici}%0D%0APrecio:%20${dineroBici}.00€%0D%0ACorreoElectrónico:%20${correoBiciIn}@${correoBiciType}.${correoBiciDot}%0D%0AImagen:%20`"
-                target="_top">Enviar Correo</a>
-            <button type="button" class="btnCascoVolverBEmail btn btn-info btn-lg" v-on:click="btnCascoVolverC5">Volver</button>
-        </div>
+        <bici5 :data="{marcaBici,modeloGiant,noGiantModel,modeloCanyon,noCanyonModel,modeloMerida,noMeridaModel,modeloTrek,noTrekModel,modeloOrbea,noOrbeaModel,estadoBici,dineroBici,correoBiciIn,correoBiciType,correoBiciDot,imageBici,imageBici2,imageBici3}" :volver="btnCascoVolverB5" v-if="seenB5correo"/>
 
         <!-- Casco -->
         <casco1 :aceptar="btnAceptarMarcaCasco" :volver="btnCascoVolverC1" v-if="seenC1" />
@@ -201,7 +164,7 @@
                 this.seenB4 = false;
             },
             //Boton Volver B4
-            btnCascoVolverC5: function () {
+            btnCascoVolverB5: function () {
                 this.seenB4 = true;
                 this.seenB5correo = false;
             },
