@@ -180,6 +180,9 @@
                                 <div class="imgBDiv" v-if="!imageBici2">
                                     <input type="file" @change="onFileChangeBici2">
                                 </div>
+                                <div class="imgBDiv" v-if="!imageBici3">
+                                    <input type="file" @change="onFileChangeBici3">
+                                </div>
                                 <div v-if="imageBici">
                                     <div class="row">
                                         <div class="col-12">
@@ -193,6 +196,14 @@
                                         <div class="col-12">
                                             <img :src="imageBici2" />
                                             <button class="buttonDeleteImage" @click="removeImageBici2">Eliminar foto</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-if="imageBici3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img :src="imageBici3" />
+                                            <button class="buttonDeleteImage" @click="removeImageBici3">Eliminar foto</button>
                                         </div>
                                     </div>
                                 </div>
@@ -276,12 +287,15 @@
             <p>Su correo electrónico es: {{correoBiciIn}}@{{correoBiciType}}.{{correoBiciDot}}
                 <br>
             </p>
-            <p>La imagen que ha introducido es:
+            <p>La imagen/imágenes que ha introducido es:
                 <br>
             </p>
             <div class="row">
                 <div class="imgBRender col-12">
                     <img :src="imageBici" />
+                </div>
+                <div class="imgBRender col-12">
+                    <img :src="imageBici2" />
                 </div>
             </div>
             <h5>Gracias por su atención</h5>
@@ -291,66 +305,10 @@
         </div>
 
         <!-- Casco -->
-        <casco1 :aceptar="btnAceptarMarcaCasco" :volver="btnCascoVolverC1" v-if="seenC1"/>
-        <casco2 :aceptar="btnAceptarImagenCasco" :volver="btnCascoVolverC2" v-if="seenC2"/>
-        <casco3 :aceptar="btnAceptarPrecioCasco" :volver="btnCascoVolverC3" v-if="seenC3"/>
-
-        <div class="correoCasco" v-if="seenC4correo">
-            <h5>Estos son los datos que nos facilita sobre su casco</h5>
-            <br>
-            <p>Su Marca elegida es: {{marcaCasco}}
-                <br>
-            </p>
-            <p>El Precio introducido es de: {{dineroCasco}}.00 €
-                <br>
-            </p>
-            <p>Su correo electrónico es: {{correoCascoIn}}@{{correoCascoType}}.{{correoCascoDot}}
-                <br>
-            </p>
-            <p>La imagen que ha introducido es:
-                <br>
-            </p>
-            <div class="row">
-                <div class="imgBRender col-12">
-                    <img :src="image" />
-                </div>
-            </div>
-            <h5>Gracias por su atención</h5>
-            <!-- <button type="button" class="btn btn-info btn-lg" v-on:click="sendEmail">Send Email</button> -->
-            <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${marcaCasco}%0D%0APrecio:%20${dineroCasco}.00€%0D%0ACorreoElectrónico:%20${correoCascoIn}@${correoCascoType}.${correoCascoDot}%0D%0AImagen:%20`"
-                target="_top">Enviar Correo</a>
-
-            <!-- <form id="contactform" action="//formspree.io/gallo.elcau@gmail.com" method="POST">
-                <h5>Estos son los datos que nos facilita sobre su casco</h5>
-                <br>
-                <p>Su Marca elegida es: {{marcaCasco}}
-                    <br>
-                </p>
-                <p>El Precio introducido es de: {{dineroCasco}}.00 €
-                    <br>
-                </p>
-                <p>Su correo electrónico es: {{correoCascoIn}}@{{correoCascoType}}.{{correoCascoDot}}
-                    <br>
-                </p>
-                <p>La imagen que ha introducido es:
-                    <br>
-                </p>
-                <img :src="image" />
-                <h5>Gracias por su atención</h5>
-                <input type="text" name="name" placeholder="Your name">
-                <input type="email" name="_replyto" placeholder="Your email">
-                <textarea name="message" placeholder="Your message"></textarea>
-                <select name="option">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <input name="image" type="file" @change="onFileChange">
-                <input type="submit" value="Send Email">
-            </form> -->
-            <button type="button" class="btnCascoVolverCEmail btn btn-info btn-lg" v-on:click="btnCascoVolverC4">Volver</button>
-        </div>
-
+        <casco1 :aceptar="btnAceptarMarcaCasco" :volver="btnCascoVolverC1" v-if="seenC1" />
+        <casco2 :aceptar="btnAceptarImagenCasco" :volver="btnCascoVolverC2" v-if="seenC2" />
+        <casco3 :aceptar="btnAceptarPrecioCasco" :volver="btnCascoVolverC3" v-if="seenC3" />
+        <casco4 :data="{marcaCasco,dineroCasco,correoCascoIn,correoCascoType,correoCascoDot,image}" :volver="btnCascoVolverC4" v-if="seenC4correo" />
     </div>
 </template>
 
@@ -409,50 +367,12 @@
 
             image: "",
             imageBici: "",
+            imageBici2:"",
+            imageBici3:"",
             dataURL: "",
         }),
 
         methods: {
-
-            sendEmail: function () {
-                var email = require("emailjs");
-                var server = email.server.connect({
-                    user: "username",
-                    password: "bender69",
-                    host: "email-smtp.us-east-1.amazonaws.com",
-                    ssl: true
-                });
-
-                // send the message and get a callback with an error or details of the message that was sent
-                server.send({
-                    text: "i hope this works",
-                    from: "you <gallo.elcau@gmail.com>",
-                    to: "someone <gallo.elcau@gmail.com>",
-                    subject: "testing emailjs"
-                }, function (err, message) {
-                    console.log(err || message);
-                });
-            },
-
-            onFileChange(e) {
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImage(files[0]);
-            },
-            createImage(file) {
-                var image = new Image();
-                var reader = new FileReader();
-
-                reader.onload = (e) => {
-                    this.image = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            removeImage: function (e) {
-                this.image = '';
-            },
-
             onFileChangeBici(e) {
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
@@ -489,6 +409,25 @@
             },
             removeImageBici2: function (e) {
                 this.imageBici2 = '';
+            },
+
+            onFileChangeBici3(e) {
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImageBici3(files[0]);
+            },
+            createImageBici3(file) {
+                var imageBici3 = new Image();
+                var reader = new FileReader();
+
+                reader.onload = (e) => {
+                    this.imageBici3 = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
+            removeImageBici3: function (e) {
+                this.imageBici3 = '';
             },
 
 
@@ -641,7 +580,7 @@
                 this.seenC4correo = false;
             },
             //Aceptar precio Casco
-            btnAceptarPrecioCasco: function (data1,data2,data3,data4) {
+            btnAceptarPrecioCasco: function (data1, data2, data3, data4) {
                 if (this.dineroCasco > 1500) {
                     alert("Productos similares al tuyo han sido vendidos con un precio medio de 1.350 euros");
                 }
@@ -874,11 +813,41 @@
         max-width: 350px;
     }
 
-    .imgBDiv{
-        margin:5px;
+    .imgBDiv {
+        margin: 5px;
     }
 
-    .estadoB{
+    .estadoB {
         margin-top: 10px;
     }
 </style>
+
+
+<!-- <form id="contactform" action="//formspree.io/gallo.elcau@gmail.com" method="POST">
+                <h5>Estos son los datos que nos facilita sobre su casco</h5>
+                <br>
+                <p>Su Marca elegida es: {{marcaCasco}}
+                    <br>
+                </p>
+                <p>El Precio introducido es de: {{dineroCasco}}.00 €
+                    <br>
+                </p>
+                <p>Su correo electrónico es: {{correoCascoIn}}@{{correoCascoType}}.{{correoCascoDot}}
+                    <br>
+                </p>
+                <p>La imagen que ha introducido es:
+                    <br>
+                </p>
+                <img :src="image" />
+                <h5>Gracias por su atención</h5>
+                <input type="text" name="name" placeholder="Your name">
+                <input type="email" name="_replyto" placeholder="Your email">
+                <textarea name="message" placeholder="Your message"></textarea>
+                <select name="option">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <input name="image" type="file" @change="onFileChange">
+                <input type="submit" value="Send Email">
+            </form> -->
