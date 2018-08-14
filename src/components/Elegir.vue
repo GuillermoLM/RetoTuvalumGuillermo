@@ -168,7 +168,7 @@
             <h4>Introduzca hasta un máximo de 3 imágenes de la bicileta</h4>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB3">Volver</button>
+                    <button type="button" id="btnVolverB02" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB3">Volver</button>
                 </div>
                 <div class="col-12">
                     <div class="column">
@@ -293,55 +293,7 @@
         <!-- Casco -->
         <casco1 :aceptar="btnAceptarMarcaCasco" :volver="btnCascoVolverC1" v-if="seenC1"/>
         <casco2 :aceptar="btnAceptarImagenCasco" :volver="btnCascoVolverC2" v-if="seenC2"/>
-
-        <div class="casco03T" v-if="seenC3">
-            <h4>Introduzca el precio con el que desea vender el casco</h4>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="btnVolverC02" class="btn btn-info btn-lg" v-on:click="btnCascoVolverC3">Volver</button>
-                </div>
-
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="column">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">€</span>
-                                    </div>
-                                    <input type="number" v-model="dineroCasco" class="moneyTextCasco form-control">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="emailC col-12">
-                                <div class="input-group">
-                                    <input v-model="correoCascoIn" type="email" class="correoTextCasco form-control" placeholder="Introduce tu email">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">@</span>
-                                    </div>
-                                    <input type="email" v-model="correoCascoType" class="correoTextCasco2 form-control" placeholder="gmail / hotmail / outlook">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.</span>
-                                    </div>
-                                    <input v-model="correoCascoDot" type="email" class="correoTextCasco3 form-control" placeholder="com / es">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1" v-if="dineroCasco && correoCascoIn && correoCascoType && correoCascoDot">
-                                <button class="btn btn-secondary btnAcpCME" v-on:click="btnAceptarPrecioCasco">Aceptar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+        <casco3 :aceptar="btnAceptarPrecioCasco" :volver="btnCascoVolverC3" v-if="seenC3"/>
 
         <div class="correoCasco" v-if="seenC4correo">
             <h5>Estos son los datos que nos facilita sobre su casco</h5>
@@ -689,10 +641,15 @@
                 this.seenC4correo = false;
             },
             //Aceptar precio Casco
-            btnAceptarPrecioCasco: function () {
+            btnAceptarPrecioCasco: function (data1,data2,data3,data4) {
                 if (this.dineroCasco > 1500) {
                     alert("Productos similares al tuyo han sido vendidos con un precio medio de 1.350 euros");
                 }
+                this.dineroCasco = data1;
+                this.correoCascoIn = data2;
+                this.correoCascoType = data3;
+                this.correoCascoDot = data4;
+
                 this.seenC4correo = true;
                 this.seenC3 = false;
             },
@@ -838,6 +795,10 @@
     }
 
     #btnVolverB01 {
+        max-height: 50px;
+    }
+
+    #btnVolverB02 {
         max-height: 50px;
     }
 
