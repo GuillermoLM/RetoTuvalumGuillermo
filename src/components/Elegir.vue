@@ -19,65 +19,9 @@
         </div>
 
         <!-- Bici -->
-        <bici1 :aceptar="btnModeloElegido" :volver="btnBiciVolverB1" v-if="seenB1" />
+        <bici1 :aceptar="btnModeloElegido" :volver="btnBiciVolverB1" v-if="seenB1"/>
         <bici2 :aceptar="btnEstadoBici" :volver="btnBiciVolverB2" v-if="seenB2"/>
-
-        <div class="bici03T" v-if="seenB3">
-            <h4>Introduzca hasta un máximo de 3 imágenes de la bicileta</h4>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="btnVolverB02" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB3">Volver</button>
-                </div>
-                <div class="col-12">
-                    <div class="column">
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                <div class="imgBDiv" v-if="!imageBici">
-                                    <input type="file" @change="onFileChangeBici">
-                                </div>
-                                <div class="imgBDiv" v-if="!imageBici2">
-                                    <input type="file" @change="onFileChangeBici2">
-                                </div>
-                                <div class="imgBDiv" v-if="!imageBici3">
-                                    <input type="file" @change="onFileChangeBici3">
-                                </div>
-                                <div v-if="imageBici">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <img :src="imageBici" />
-                                            <button class="buttonDeleteImage" @click="removeImageBici">Eliminar foto</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-if="imageBici2">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <img :src="imageBici2" />
-                                            <button class="buttonDeleteImage" @click="removeImageBici2">Eliminar foto</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-if="imageBici3">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <img :src="imageBici3" />
-                                            <button class="buttonDeleteImage" @click="removeImageBici3">Eliminar foto</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-center" v-if="imageBici || imageBici2 || imageBici3">
-                                            <button class="btn btn-secondary btnAcpC02" v-on:click="btnAceptarImagenesBici">Aceptar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <bici3 :aceptar="btnAceptarImagenesBici" :volver="btnBiciVolverB3" v-if="seenB3"/>
 
         <div class="bici04T" v-if="seenB4">
             <h4>Introduzca el precio con el que desea vender la bicicleta</h4>
@@ -234,64 +178,6 @@
         }),
 
         methods: {
-            onFileChangeBici(e) {
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImageBici(files[0]);
-            },
-            createImageBici(file) {
-                var imageBici = new Image();
-                var reader = new FileReader();
-
-                reader.onload = (e) => {
-                    this.imageBici = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            removeImageBici: function (e) {
-                this.imageBici = '';
-            },
-
-            onFileChangeBici2(e) {
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImageBici2(files[0]);
-            },
-            createImageBici2(file) {
-                var imageBici2 = new Image();
-                var reader = new FileReader();
-
-                reader.onload = (e) => {
-                    this.imageBici2 = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            removeImageBici2: function (e) {
-                this.imageBici2 = '';
-            },
-
-            onFileChangeBici3(e) {
-                var files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImageBici3(files[0]);
-            },
-            createImageBici3(file) {
-                var imageBici3 = new Image();
-                var reader = new FileReader();
-
-                reader.onload = (e) => {
-                    this.imageBici3 = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            },
-            removeImageBici3: function (e) {
-                this.imageBici3 = '';
-            },
-
-
             // BICILETA //
             btnBici: function () {
                 this.seenB1 = true;
@@ -335,7 +221,11 @@
                 this.seenB2 = true;
             },
             //Aceptar Imagenes Bici
-            btnAceptarImagenesBici: function () {
+            btnAceptarImagenesBici: function (iB1, iB2, iB3) {
+                this.imageBici = iB1;
+                this.imageBici2 = iB2;
+                this.imageBici3 = iB3;
+
                 this.seenB4 = true;
                 this.seenB3 = false;
             },
@@ -406,68 +296,6 @@
                 this.seenC4correo = true;
                 this.seenC3 = false;
             },
-
-            //No modelos
-            btnNoGiant: function () {
-                this.giant = false;
-                this.canyon = false;
-                this.merida = false;
-                this.trek = false;
-                this.orbea = false;
-                this.noGiant = true;
-                this.noCanyon = false;
-                this.noMerida = false;
-                this.noTrek = false;
-                this.noOrbea = false;
-            },
-            btnNoCanyon: function () {
-                this.giant = false;
-                this.canyon = false;
-                this.merida = false;
-                this.trek = false;
-                this.orbea = false;
-                this.noGiant = false;
-                this.noCanyon = true;
-                this.noMerida = false;
-                this.noTrek = false;
-                this.noOrbea = false;
-            },
-            btnNoMerida: function () {
-                this.giant = false;
-                this.canyon = false;
-                this.merida = false;
-                this.trek = false;
-                this.orbea = false;
-                this.noGiant = false;
-                this.noCanyon = false;
-                this.noMerida = true;
-                this.noTrek = false;
-                this.noOrbea = false;
-            },
-            btnNoTrek: function () {
-                this.giant = false;
-                this.canyon = false;
-                this.merida = false;
-                this.trek = false;
-                this.orbea = false;
-                this.noGiant = false;
-                this.noCanyon = false;
-                this.noMerida = false;
-                this.noTrek = true;
-                this.noOrbea = false;
-            },
-            btnNoOrbea: function () {
-                this.giant = false;
-                this.canyon = false;
-                this.merida = false;
-                this.trek = false;
-                this.orbea = false;
-                this.noGiant = false;
-                this.noCanyon = false;
-                this.noMerida = false;
-                this.noTrek = false;
-                this.noOrbea = true;
-            }
         }
     }
 </script>

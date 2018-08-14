@@ -29,7 +29,7 @@
 
 <script scoped>
     export default {
-        name: 'bici1',
+        name: 'bici2',
 
         props: ['aceptar', 'volver'],
         data: () => ({
