@@ -20,33 +20,7 @@
 
         <!-- Bici -->
         <bici1 :aceptar="btnModeloElegido" :volver="btnBiciVolverB1" v-if="seenB1" />
-
-        <div class="bici02T" v-if="seenB2">
-            <h4>Por favor, debe de indicarnos el estado de su bicicleta</h4>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" id="btnVolverB01" class="btn btn-info btn-lg" v-on:click="btnBiciVolverB2">Volver</button>
-                </div>
-                <div class="col-12 estadoB d-flex justify-content-center">
-                    <div class="dropdown">
-                        <select class="custom-select" v-model="estadoBici">
-                            <option value="bicicleta nueva">0: bicicleta nueva</option>
-                            <option value="muy poco uso">1: muy poco uso</option>
-                            <option value="usada">2: usada</option>
-                            <option value="con bastante uso">3: con bastante uso</option>
-                            <option value="puede necesitar algún repuesto">4: puede necesitar algún repuesto</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div v-if="estadoBici">
-                        <button class="btn btn-secondary btnAcepMarcas" v-on:click="btnEstadoBici">Aceptar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <bici2 :aceptar="btnEstadoBici" :volver="btnBiciVolverB2" v-if="seenB2"/>
 
         <div class="bici03T" v-if="seenB3">
             <h4>Introduzca hasta un máximo de 3 imágenes de la bicileta</h4>
@@ -349,7 +323,9 @@
                 this.seenB1 = true;
             },
             //Boton pasar a B3
-            btnEstadoBici: function () {
+            btnEstadoBici: function (estB) {
+                this.estadoBici = estB;
+
                 this.seenB3 = true;
                 this.seenB2 = false;
             },
