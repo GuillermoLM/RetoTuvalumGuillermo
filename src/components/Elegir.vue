@@ -74,18 +74,6 @@
             seenB5correo: false,
             seenC4correo: false,
 
-            giant: false,
-            canyon: false,
-            merida: false,
-            trek: false,
-            orbea: false,
-
-            noGiant: false,
-            noCanyon: false,
-            noMerida: false,
-            noTrek: false,
-            noOrbea: false,
-
             image: "",
             imageBici: "",
             imageBici2:"",
@@ -152,13 +140,14 @@
             },
             //Aceptar precio Bici
             btnAceptarPrecioBici: function (dB, cB1, cB2, cB3) {
-                if (this.dineroBici > 1500) {
-                    alert("Productos similares al tuyo han sido vendidos con un precio medio de 1.350 euros");
-                }
                 this.dineroBici = dB;
                 this.correoBiciIn = cB1;
                 this.correoBiciType = cB2;
                 this.correoBiciDot = cB3;
+
+                if (this.dineroBici > 1500) {
+                    alert("Productos similares al tuyo han sido vendidos con un precio medio de 1.350 euros");
+                }
 
                 this.seenB5correo = true;
                 this.seenB4 = false;
@@ -168,7 +157,6 @@
                 this.seenB4 = true;
                 this.seenB5correo = false;
             },
-
 
             // CASCO //
             btnCasco: function () {
@@ -206,13 +194,14 @@
             },
             //Aceptar precio Casco
             btnAceptarPrecioCasco: function (data1, data2, data3, data4) {
-                if (this.dineroCasco > 1500) {
-                    alert("Productos similares al tuyo han sido vendidos con un precio medio de 1.350 euros");
-                }
                 this.dineroCasco = data1;
                 this.correoCascoIn = data2;
                 this.correoCascoType = data3;
                 this.correoCascoDot = data4;
+
+                if (this.dineroCasco > 1500) {
+                    alert("Productos similares al tuyo han sido vendidos con un precio medio de 1.350 euros");
+                }
 
                 this.seenC4correo = true;
                 this.seenC3 = false;
@@ -239,149 +228,6 @@
 
     h4 {
         font-size: 22px;
-    }
-
-    .bici01T,
-    .bici02T,
-    .bici03T,
-    .casco01T,
-    .casco02T,
-    .casco03T {
-        margin: 15px;
-    }
-
-    .btnAcpB01 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .btnAcepMarcas {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .btnAcpB04 {
-        margin-left: 10px;
-    }
-
-    .btnAcpC02 {
-        margin-top: 10px;
-    }
-
-    .btnAcpC03 {
-        margin-left: 10px;
-    }
-
-    .modelGiant {
-        margin-top: 10px;
-    }
-
-    .modelCanyon {
-        margin-top: 10px;
-    }
-
-    .modelMerida {
-        margin-top: 10px;
-    }
-
-    .modelTrek {
-        margin-top: 10px;
-    }
-
-    .modelOrbea {
-        margin-top: 10px;
-    }
-
-    #btnVolverC01 {
-        max-height: 50px;
-    }
-
-    #btnVolverB01 {
-        max-height: 50px;
-    }
-
-    #btnVolverB02 {
-        max-height: 50px;
-    }
-
-    #btnVolverC02 {
-        max-height: 50px;
-    }
-
-    .moneyTextBici {
-        max-width: 400px;
-    }
-
-    .moneyTextCasco {
-        max-width: 400px;
-    }
-
-    .correoTextBici,
-    .correoTextCasco,
-    .correoTextBici2,
-    .correoTextCasco2 {
-        max-width: 210px;
-    }
-
-    .correoTextBici3,
-    .correoTextCasco3 {
-        max-width: 100px;
-    }
-
-    .emailB {
-        margin-top: 10px;
-    }
-
-    .emailC {
-        margin-top: 10px;
-    }
-
-    .btnAcpBME {
-        margin-top: 30px;
-    }
-
-    .btnAcpCME {
-        margin-top: 30px;
-    }
-
-    .btnCascoVolverCEmail {
-        margin-left: 20px;
-    }
-
-    .btnCascoVolverBEmail {
-        margin-left: 20px;
-    }
-
-    .inputNo {
-        margin-top: 10px;
-    }
-
-    .buttonDeleteImage {
-        margin-left: 20px;
-    }
-
-    img {
-        max-width: 80px;
-        margin: auto;
-        display: block;
-        margin-bottom: 10px;
-        max-height: 100px;
-    }
-
-    .imgBRender {
-        max-height: 100px;
-    }
-
-    .custom-select {
-        max-width: 350px;
-    }
-
-    .imgBDiv {
-        margin: 5px;
-    }
-
-    .estadoB {
-        margin-top: 10px;
     }
 </style>
 
