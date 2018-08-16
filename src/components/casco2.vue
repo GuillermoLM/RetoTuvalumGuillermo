@@ -9,14 +9,15 @@
                 <div class="column">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center">
-                            <div v-if="!image">
-                                <input type="file" @change="onFileChange">
+                            <div class="upload-btn-wrapper" v-if="!image">
+                                <button class="btnArchivo">Seleccionar archivo</button>
+                                <input type="file" @change="onFileChange" />
                             </div>
                             <div v-else>
                                 <div class="row">
                                     <div class="col-12">
                                         <img :src="image" />
-                                        <button class="buttonDeleteImage" @click="removeImage">Eliminar foto</button>
+                                        <button class="btnArchivo buttonDeleteImage" @click="removeImage">Eliminar foto</button>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -95,5 +96,29 @@
 
     .btnAcpC02 {
         margin-top: 10px;
+    }
+
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+    .btnArchivo {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 5px 10px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        margin: 5px;
+    }
+
+    .upload-btn-wrapper input[type=file] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
     }
 </style>
