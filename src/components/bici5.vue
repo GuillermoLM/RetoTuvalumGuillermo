@@ -11,12 +11,6 @@
         <p>El Estado de su bicicleta es de: {{data.estadoBici}}
             <br>
         </p>
-        <p>El Precio introducido es de: {{data.dineroBici}}.00 €
-            <br>
-        </p>
-        <p>Su correo electrónico es: {{data.correoBiciIn}}@{{data.correoBiciType}}.{{data.correoBiciDot}}
-            <br>
-        </p>
         <p>La imagen/imágenes que ha introducido es:
             <br>
         </p>
@@ -31,10 +25,16 @@
                 <img :src="data.imageBici3" />
             </div>
         </div>
+        <p>El Precio introducido es de: {{data.dineroBici}}.00 €
+            <br>
+        </p>
+        <p>Su correo electrónico es: {{data.correoBiciIn}}@{{data.correoBiciType}}.{{data.correoBiciDot}}
+            <br>
+        </p>
         <h5>Gracias por su atención</h5>
         <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${data.marcaBici}%0D%0AModelo:%20${data.modeloGiant} ${data.modeloCanyon} ${data.modeloMerida} ${data.modeloTrek} ${data.modeloOrbea} ${data.noGiantModel} ${data.noCanyonModel} ${data.noMeridaModel} ${data.noTrekModel} ${data.noOrbeaModel}%0D%0AEstado%20bicicleta:%20${data.estadoBici}%0D%0APrecio:%20${data.dineroBici}.00€%0D%0ACorreoElectrónico:%20${data.correoBiciIn}@${data.correoBiciType}.${data.correoBiciDot}%0D%0AImagen:%20`"
             target="_top">Enviar Correo</a>
-        <button type="button" class="btnCascoVolverBEmail btn btn-info btn-lg" v-on:click="volver">Volver</button>
+        <button type="button" class="btnCascoVolverBEmail btn btn-info btn-lg" v-on:click="volver">Volver Inicio</button>
     </div>
 </template>
 
@@ -69,5 +69,9 @@
         display: block;
         margin-bottom: 10px;
         max-height: 100px;
+    }
+
+    .correoBici{
+        margin: 10px;
     }
 </style>

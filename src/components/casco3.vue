@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-1" v-if="dineroCasco && correoCascoIn && correoCascoType && correoCascoDot">
+                        <div class="col-12" v-if="dineroCasco && correoCascoIn && correoCascoType && correoCascoDot">
                             <button class="btn btn-secondary btnAcpCME" v-on:click="() => aceptar(dineroCasco,correoCascoIn,correoCascoType,correoCascoDot)">Aceptar</button>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
     }
 
     .btnAcpCME {
-        margin-top: 30px;
+        margin-top: 10px;
     }
 
     .correoTextCasco , .correoTextCasco{

@@ -15,14 +15,14 @@
                             </div>
                             <div v-else>
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-12 spaceIm">
                                         <img :src="image" />
                                         <button class="btnArchivo buttonDeleteImage" @click="removeImage">Eliminar foto</button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-center">
-                                        <button class="btn btn-secondary btnAcpC02" v-on:click="() => aceptar(image)">Aceptar</button>
+                                        <button class="btn btn-secondary" v-on:click="() => aceptar(image)">Aceptar</button>
                                     </div>
                                 </div>
                             </div>
@@ -94,8 +94,8 @@
         max-height: 50px;
     }
 
-    .btnAcpC02 {
-        margin-top: 10px;
+    .spaceIm{
+        margin-top: 5px;
     }
 
     .upload-btn-wrapper {

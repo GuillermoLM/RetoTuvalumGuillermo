@@ -5,12 +5,6 @@
         <p>Su Marca elegida es: {{data.marcaCasco}}
             <br>
         </p>
-        <p>El Precio introducido es de: {{data.dineroCasco}}.00 €
-            <br>
-        </p>
-        <p>Su correo electrónico es: {{data.correoCascoIn}}@{{data.correoCascoType}}.{{data.correoCascoDot}}
-            <br>
-        </p>
         <p>La imagen que ha introducido es:
             <br>
         </p>
@@ -19,11 +13,16 @@
                 <img :src="data.image" />
             </div>
         </div>
+        <p>El Precio introducido es de: {{data.dineroCasco}}.00 €
+            <br>
+        </p>
+        <p>Su correo electrónico es: {{data.correoCascoIn}}@{{data.correoCascoType}}.{{data.correoCascoDot}}
+            <br>
+        </p>
         <h5>Gracias por su atención</h5>
         <a :href="`mailto:hola@tuvalum.com?Subject=Datos%20Tuvalum%20nuevo%20producto&body=Marca:%20${data.marcaCasco}%0D%0APrecio:%20${data.dineroCasco}.00€%0D%0ACorreoElectrónico:%20${data.correoCascoIn}@${data.correoCascoType}.${data.correoCascoDot}%0D%0AImagen:%20`"
             target="_top">Enviar Correo</a>
-        <button type="button" class="btnCascoVolverCEmail btn btn-info btn-lg" v-on:click="volver">Volver</button>
-        
+        <button type="button" class="btnCascoVolverCEmail btn btn-info btn-lg" v-on:click="volver">Volver Inicio</button>
     </div>
 </template>
 
@@ -31,7 +30,7 @@
     export default {
         name: 'casco4',
 
-        props: ["data",'volver'],
+        props: ["data", 'volver'],
     }
 </script>
 
@@ -58,5 +57,9 @@
         display: block;
         margin-bottom: 10px;
         max-height: 100px;
+    }
+
+    .correoCasco{
+        margin:10px;
     }
 </style>

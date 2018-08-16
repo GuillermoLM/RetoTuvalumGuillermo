@@ -2,10 +2,10 @@
     <div class="casco01T">
         <h4>Escoge una marca del casco</h4>
         <div class="row">
-            <div class="col-4 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
                 <button type="button" id="btnVolverC01" class="btn btn-info btn-lg" v-on:click="volver">Volver</button>
             </div>
-            <div class="col-2 offset-1 d-flex justify-content-start">
+            <div class="col-12 d-flex justify-content-center">
                 <div class="row">
                     <div class="col-12">
                         <select class="custom-select" v-model="marcaCasco">
@@ -57,6 +57,7 @@
 
     #btnVolverC01 {
         max-height: 50px;
+        margin:5px;
     }
 
     .custom-select {

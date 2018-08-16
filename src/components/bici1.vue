@@ -2,10 +2,10 @@
     <div class="bici01T">
         <h4>Escoge una marca y modelo de la bicicleta</h4>
         <div class="row">
-            <div class="col-4 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
                 <button type="button" id="btnVolverB01" class="btn btn-info btn-lg" v-on:click="volver">Volver</button>
             </div>
-            <div class="col-8">
+            <div class="col-12 d-flex justify-content-center">
                 <div class="dropdown">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-start">
@@ -161,6 +161,7 @@
 
     #btnVolverB01 {
         max-height: 50px;
+        margin: 5px;
     }
 
     .btnAcpB01 {

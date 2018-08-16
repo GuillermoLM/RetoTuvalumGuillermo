@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-12 d-flex justify-content-center">
                                         <div class="col-12 d-flex justify-content-center" v-if="imageBici || imageBici2 || imageBici3">
-                                            <button class="btn btn-secondary btnAcpC02" v-on:click="() => aceptar(imageBici, imageBici2, imageBici3)">Aceptar</button>
+                                            <button class="btn btn-secondary" v-on:click="() => aceptar(imageBici, imageBici2, imageBici3)">Aceptar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -172,10 +172,6 @@
 
     .buttonDeleteImage {
         margin-left: 20px;
-    }
-
-    .btnAcpC02 {
-        margin-top: 10px;
     }
 
     img {

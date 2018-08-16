@@ -154,7 +154,6 @@
             },
             //Boton Volver B4
             btnCascoVolverB5: function () {
-                this.seenB4 = true;
                 this.seenB5correo = false;
             },
 
@@ -189,7 +188,6 @@
                 this.seenC2 = true;
             },
             btnCascoVolverC4: function () {
-                this.seenC3 = true;
                 this.seenC4correo = false;
             },
             //Aceptar precio Casco
